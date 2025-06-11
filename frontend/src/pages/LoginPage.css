@@ -1,0 +1,144 @@
+@import "../colors.css";
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.loginContainer {
+    height: 100vh;
+    background-image: url("../assets/background.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+}
+
+.innerLoginContainer {
+    max-width: 500px;
+    width: 100%;
+
+    /* height: 60%; */
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--hoverColor);
+    border-radius: 10px;
+
+    padding: 40px 30px;
+}
+
+.innerLoginContainer p {
+    text-align: center;
+    color: var(--secondTextColor)
+}
+
+.LoginHeading {
+    color: var(--mainColor);
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+.usernameInputDiv {
+    margin-top: 50px;
+    position: relative;
+    padding: 5px 20px;
+    background-color: var(--hoverColor);
+    border-radius: 100px;
+
+    display: flex;
+    align-items: center;
+
+}
+
+.usernameInput {
+    width: 100%;
+    border: 0;
+    outline: none;
+    padding: 10px 0px;
+    font-size: 18px;
+    color: var(--secondTextColor);
+
+    &::placeholder {
+        color: transparent;
+    }
+
+    &:placeholder-shown~.usernameLabel {
+        font-size: 18px;
+        top: 14px;
+        color: var(--textColor)
+    }
+
+
+}
+
+.usernameInput:focus~.usernameLabel {
+    top: 0px;
+    font-size: 13px;
+    color: var(--mainColor);
+
+}
+
+.usernameInput:focus {
+    color: var(--textColor);
+}
+
+.usernameLabel {
+
+    position: absolute;
+    display: block;
+    transition: all 0.2s;
+    cursor: text;
+    top: 0px;
+    font-size: 13px;
+    color: var(--mainColor);
+
+}
+
+.loginBtn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    margin-top: 100px;
+    background-color: var(--mainColor);
+    border-radius: 50px;
+    cursor: pointer;
+    color: var(--textColor);
+    font-size: 18px;
+
+
+    &:hover{
+        background-color: var(--hoverColor);
+    }
+}
+
+
+.lastDiv{
+    text-align: center;
+    color: var(--textColor);
+}
+
+.lastDiv span{
+    color: var(--mainColor);
+
+
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+
+.passwordDiv{
+    width: 100%;
+    text-align: end;
+    padding: 0px 30px;
+}
+
+.ShowPasswordDiv{
+    color: var(--textColor);
+    cursor: pointer;
+
+      transition: opacity 0.3s ease, transform 0.3s ease;
+}

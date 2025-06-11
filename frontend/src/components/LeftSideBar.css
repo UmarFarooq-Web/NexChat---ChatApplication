@@ -1,0 +1,101 @@
+@import "../colors.css";
+
+* {
+    padding: 0;
+    margin: 0;
+}
+.outerContainer{
+    position: relative;
+}
+.container {
+    background-color: var(--secondaryColor);
+    max-width: 60px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.2s ease-in-out;
+    transform: translateX(0);
+    position: relative;
+    z-index: 4;
+    border-right: 1px solid var(--hoverColor);
+}
+
+.logo {
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.icons {
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.icons div {
+    padding: 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+}
+
+.icons div:hover {
+    transform: translateY(-2px);
+}
+
+.selected {
+    background-color: var(--mainColor);
+}
+
+.selected:hover {
+    background-color: var(--mainColor);
+}
+
+.menuButton {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+.closeButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    color: var(--mainColor);
+
+}
+
+@media (max-width:840px) {
+    .container {
+        position: absolute;
+        transform: translateX(-100%);
+        /* left: -100px; */
+
+    }
+
+    .menuButton {
+        display: block;
+        color: var(--mainColor);
+        
+    }
+
+
+    .open {
+        transform: translateX(0%);
+    }
+}

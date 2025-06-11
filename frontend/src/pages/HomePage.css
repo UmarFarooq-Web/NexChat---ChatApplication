@@ -1,0 +1,227 @@
+@import "../colors.css";
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.containers {
+    background-color: red;
+    width: 100%;
+    display: flex;
+    height: 100vh;
+    position: relative;
+    overflow: auto hidden;
+}
+
+.containers .left {
+    width: 26%;
+    /* width: 100%; */
+    transform: translateX(0);
+    background-color: var(--secondaryColor);
+    transition: all 0.2s ease;
+    min-width: 315px;
+    padding: 50px 10px;
+    height: 100vh;
+
+    border-right: 1px solid var(--hoverColor);
+
+
+}
+
+.containers .right {
+    min-width: 250px;
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+
+    background-color: green;
+}
+
+.chatShow {
+    display: none;
+    position: absolute;
+    top: 54px;
+    left: 3px;
+    color: var(--mainColor);
+}
+
+.chatClose {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 6;
+    color: var(--mainColor);
+}
+
+
+
+/* Styling in Left side */
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.heading .first {
+    color: var(--textColor);
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.heading .second {
+    color: var(--mainColor);
+    cursor: pointer;
+}
+
+.heading .second:hover {
+    color: var(--thirdColor);
+}
+
+.searchBar {
+    width: 100%;
+    background-color: var(--thirdColor);
+    padding: 3px 12px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    margin-right: 10px;
+    margin-left: 10px;
+
+}
+
+.searchBar input {
+    width: 100%;
+    padding: 7px;
+    outline: none;
+    color: var(--textColor);
+}
+
+.heading2 {
+    color: var(--textColor);
+    display: flex;
+    gap: 5px;
+    font-size: 14px;
+    padding-top: 20px;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+
+}
+
+.userCard {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    border-bottom: 1px solid var(--thirdColor);
+    padding: 10px 8px;
+    border-radius: 10px;
+    cursor: default;
+
+}
+
+.userCard:hover {
+    background-color: var(--thirdColor);
+
+}
+
+.userCard .profilePic {
+    width: 70px;
+    /* height: 70px; */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--thirdColor);
+}
+
+.userCard .profilePic img {
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.dataDiv {
+    width: 100%;
+}
+
+.dataDiv .title {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 10px;
+
+}
+
+.title span:first-child {
+    color: var(--textColor);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.title span:nth-child(2) {
+    color: var(--secondTextColor);
+}
+
+.dataDiv .Message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dataDiv .Message span:first-child {
+    color: var(--secondTextColor);
+    overflow: hidden;
+    height: 24px;
+}
+
+.dataDiv .Message span:nth-child(2) {
+    background-color: red;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+
+@media (max-width:1400px) {
+    .containers .left {
+        width: 35%;
+    }
+}
+
+@media (max-width:800px) {
+    .containers .left {
+        position: absolute;
+        transform: translateX(-100%);
+        z-index: 5;
+        width: 100%;
+    }
+
+    .right {
+        max-width: 100%;
+    }
+
+    .chatShow {
+        display: block;
+    }
+
+    .containers .show {
+        transform: translateX(0%);
+        height: 100vh;
+    }
+
+    .chatClose {
+        display: block;
+        z-index: 5;
+    }
+
+}

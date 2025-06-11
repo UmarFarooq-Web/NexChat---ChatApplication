@@ -1,0 +1,107 @@
+@import "../colors.css";
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.AddChatBoxContainer {
+    max-width: 400px;
+    width: 100%;
+    background-color: var(--mainColor);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%)  translateY(-50%);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.CloseBtn{
+
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: var(--textColor);
+    padding: 3px;
+    border-radius: 50px;
+    cursor: pointer;
+    &:hover{
+        background-color: var(--hoverColor);
+    }
+}
+
+.AddChatBoxContainer h1 {
+    text-align: center;
+    color: var(--textColor);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+.textInputDiv {
+    background-color: var(--hoverColor);
+    margin: 20px 10px;
+    border-radius: 50px;
+    padding: 16px 18px;
+    position: relative;
+
+}
+
+.TextInput {
+    outline: none;
+
+    
+    &::placeholder {
+        color: transparent;
+    }
+
+    &:placeholder-shown~.TextInputLable {
+        top: 15px;
+        font-size: 18px;
+    }
+
+    &:focus~.TextInputLable {
+        top: 0;
+        left: 14px;
+        font-size: 14px;
+        color: var(--secondaryColor);
+    }
+}
+
+
+
+.TextInputLable {
+    position: absolute;
+    top: 0;
+    left: 14px;
+    font-size: 14px;
+    cursor: text;
+    transition: all 0.1s;
+}
+
+
+.SearchUserTitle{
+    color: var(--textColor);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.SearchUserAddButton{
+    padding: 10px 20px;
+    background-color: var(--secondaryColor);
+    color: var(--textColor);
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover{
+        background-color: var(--secondTextColor);
+    }
+}
+
+.SearchUserCard{
+    display: flex;
+    background-color: var(--hoverColor);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}

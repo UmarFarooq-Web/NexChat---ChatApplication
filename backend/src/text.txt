@@ -1,0 +1,19 @@
+/auth/api:
+
+/login              (post request)                 get data verify and send Userdata with cookies
+/check-username     (get request)                 get username and check if it aleady used
+/signup             (post request)                get data and save it in database
+
+/send-otp           (get request)                 get email and send otp
+/verify-otp         (post request)                get otp and verify it
+
+
+
+
+/message:
+
+
+/get-messages       (get request)                    get a user id and send all message where sender or reveiver id is equal to user id
+/get-users          (get request)                    get a user id and send all the users connected to that users
+/send-message       (post request)                   receive a message and store it in data base
+/send-react         (post request)                   get react and store it in database

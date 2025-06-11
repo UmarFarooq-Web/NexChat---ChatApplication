@@ -1,0 +1,55 @@
+@import "../colors.css";
+.profilePageContainer{
+    background-color: var(--secondaryColor);
+    padding: 20px;
+}
+
+.InnerContainer{
+    background-color: var(--mainColor);
+    min-width: 300px;
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px 30px;
+
+}
+
+.ProfilePicSection{
+    width: 200px;
+    height: 200px;
+    border-radius: 1100px;
+    overflow: hidden;
+
+}
+.profilePicText{
+    margin-bottom: 100px;
+    color: var(--textColor);
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.NameSection{
+    width: 100%;
+    font-size: 24px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    
+
+    
+}
+
+.NameSection span:nth-child(2){
+    background-color: var(--hoverColor);
+    padding: 10px;
+    border: 1px solid var(--thirdColor);
+    border-radius: 10px;
+    color: var(--textColor);
+}
+

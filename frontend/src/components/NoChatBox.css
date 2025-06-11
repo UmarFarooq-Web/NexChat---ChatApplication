@@ -1,0 +1,35 @@
+@import "../colors.css";
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.NoChatBoxContainer{
+    background-color: var(--secondaryColor);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.NoChatBoxInnerContainer{
+     display: flex;
+     flex-direction: column;
+     max-width: 700px;
+    justify-content: center;
+    align-items: center;
+}
+.NoChatBoxInnerContainer div{
+    max-width: 200px;
+    min-width: 100px;
+}
+
+.NoChatBoxInnerContainer h1{
+    color: var(--mainColor);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.NoChatBoxInnerContainer p{
+    color: var(--secondTextColor);
+    font-size: 1.1rem;
+}

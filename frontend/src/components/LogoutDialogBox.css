@@ -1,0 +1,26 @@
+@import "../colors.css";
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.LogoutDialogBoxContainer{
+    width: 250px;
+    /* height: 50px; */
+    background-color: var(--mainColor);
+    z-index:10 ;
+    position: absolute;
+    left: 50px;
+    top: 25%;
+    display: flex;
+    color: var(--textColor);
+    align-items: center;
+    flex-direction: column;
+}
+
+.LogoutDialogBoxContainer button{
+    background-color: var(--hoverColor);
+    padding: 10px;    
+    margin: 0 10px;
+}
