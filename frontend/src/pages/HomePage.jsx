@@ -16,18 +16,38 @@ import NoChatBox from '../components/NoChatBox';
 const HomePage = () => {
   const [show, setShow] = useState(false);
   const [IsUsersLoading, setIsUsersLoading] = useState(false);
-  const {AuthUser , Messages , setMessages , setSelectedUser} = useAuthStore();
+  const { AuthUser, Messages, setMessages, setSelectedUser, connectedUsers } = useAuthStore();
+  const setConnectedUsers = useAuthStore((state) => state.setConnectedUsers);
 
-  const {IsAddChatBoxShown , setIsAddChatBoxShown , Users , setUsers , SelectedUser} = useAuthStore()
+  const { IsAddChatBoxShown, setIsAddChatBoxShown, Users, setUsers, SelectedUser } = useAuthStore()
   const reloadKey = useAuthStore();
 
   useEffect(() => {
     const fun = async () => {
       try {
         socket.connect();
+        socket.emit('join', AuthUser._id)
         setIsUsersLoading(true)
         const res = await MessageInstance.get(`/get-users`);
         setUsers(res.data);
+
+        const setConnectedUsers = useAuthStore.getState().setConnectedUsers;
+
+        socket.on("user-connected", (user) => {
+          console.log("User Connected : " , user);
+          setConnectedUsers((prev) => {
+            if (!prev.includes(user)) {
+              return [...prev, user];
+            }
+            return prev;
+          })
+        });
+
+        socket.on("user-disconnected", (user) => {
+          setConnectedUsers((prev) => prev.filter((u) => u !== user));
+        })
+
+
       } catch (error) {
         console.log("Error in useEffect in homePage.jsx : ", error);
       } finally {
@@ -39,17 +59,17 @@ const HomePage = () => {
     fun();
   }, [])
 
-const handleUserCardClick = async(UserId)=>{
+  const handleUserCardClick = async (UserId) => {
 
-  try {
-    const res = await MessageInstance.get(`/get-messages/${UserId}`);
-    // console.log(UserId);
-    setMessages(res.data);
-    
-  } catch (error) {
-    
+    try {
+      const res = await MessageInstance.get(`/get-messages/${UserId}`);
+      // console.log(UserId);
+      setMessages(res.data);
+
+    } catch (error) {
+
+    }
   }
-}
 
 
   return (
@@ -70,10 +90,11 @@ const handleUserCardClick = async(UserId)=>{
 
         {IsUsersLoading ? <LoaderCircle className='animate-spin' /> : Users.map((e, i) => (
           e.IsPinned &&
-          <button key={i} name={e._id} onClick={()=>{handleUserCardClick(e._id) ; setSelectedUser(e)}}  className="userCard">
+          <button key={i} name={e._id} onClick={() => { handleUserCardClick(e._id); setSelectedUser(e) }} className="userCard">
             <div className="profilePic">
               <img src={e.ProfilePic || avatar} alt="" />
-            </div>  
+            </div>
+                <div className={`activeIcon ${connectedUsers.includes(e._id)?"":"hidden"}`}></div>
             <div className='dataDiv'>
               <div className="title"><span>{e.FullName}</span><span>2 min ago</span></div>
               <div className="Message"><span>{e.lastMessage}</span><span>1</span></div>
@@ -81,22 +102,24 @@ const handleUserCardClick = async(UserId)=>{
           </button>))}
 
         <div className="heading2">All Messages</div>
-         {IsUsersLoading ? <LoaderCircle className='animate-spin' /> : Users.map((e, i) => (
-          !e.IsPinned &&(
-          <button key={i} name={e._id} onClick={()=>{handleUserCardClick(e._id) ; setSelectedUser(e)}} className={`userCard ${SelectedUser?SelectedUser._id==e._id?"bg-[#fafafa34]":"":""}`}>
-            <div className="profilePic">
-              <img src={e.ProfilePic || avatar} alt="" />
-            </div>
-            <div className='dataDiv'>
-              <div className="title"><span>{e.FullName}</span><span>2 min ago</span></div>
-              <div className="Message"><span>{e.lastMessage}</span><span>1</span></div>
-            </div>
-          </button>)))}
+        {IsUsersLoading ? <LoaderCircle className='animate-spin' /> : Users.map((e, i) => (
+          !e.IsPinned && (
+            <button key={i} name={e._id} onClick={() => { handleUserCardClick(e._id); setSelectedUser(e) }} className={`userCard ${SelectedUser ? SelectedUser._id == e._id ? "bg-[#fafafa34]" : "" : ""}`}>
+              <div className="profilePic">
+                <img src={e.ProfilePic || avatar} alt="" />
+
+              </div>
+                <div className={`activeIcon ${connectedUsers.includes(e._id)?"":"hidden"}`}></div>
+              <div className='dataDiv'>
+                <div className="title"><span>{e.FullName}</span><span>2 min ago</span></div>
+                <div className="Message"><span>{e.lastMessage}</span><span>1</span></div>
+              </div>
+            </button>)))}
       </div>
 
 
       <div className="right">
-        {SelectedUser?<ChatBox />:<NoChatBox/>}
+        {SelectedUser ? <ChatBox /> : <NoChatBox />}
       </div>
       {show && <button className='chatClose' onClick={() => { setShow(false) }}><X size={30} /></button>}
       {IsAddChatBoxShown && <AddChatBox />}

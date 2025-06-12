@@ -122,6 +122,7 @@
     padding: 10px 8px;
     border-radius: 10px;
     cursor: default;
+    position: relative;
 
 }
 
@@ -139,8 +140,20 @@
     align-items: center;
     overflow: hidden;
     background-color: var(--thirdColor);
+    position: relative;
 }
 
+.activeIcon{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(21, 248, 21);
+    position: absolute;
+    z-index: 2;
+    top: 20%;
+    left: 14%;
+
+}
 .userCard .profilePic img {
     width: 100%;
     border-radius: 50%;

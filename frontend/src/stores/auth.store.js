@@ -11,8 +11,8 @@ const useAuthStore = create((set) => ({
 
   Users: [],
 
-  showDialogBox:false,
-  setShowDialogBox:(s)=>set(()=>({showDialogBox:s})),
+  showDialogBox: false,
+  setShowDialogBox: (s) => set(() => ({ showDialogBox: s })),
 
   setUsers: (users) => set(() => ({ Users: users })),
 
@@ -29,6 +29,15 @@ const useAuthStore = create((set) => ({
     })),
 
   setSelectedUser: (selectedUser) => set(() => ({ SelectedUser: selectedUser })),
+
+  connectedUsers: [],
+  setConnectedUsers: (updater) =>
+    set((state) => ({
+      connectedUsers:
+        typeof updater === "function"
+          ? updater(state.connectedUsers)
+          : updater,
+    })),
 
 }));
 

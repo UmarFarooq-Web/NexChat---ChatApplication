@@ -35,11 +35,20 @@ io.on('connection' , (socket)=>{
 
   socket.on('join' , (UserId)=>{
     socket.join(UserId);
+    socket.UserId = UserId
+    socket.broadcast.emit("user-connected" , UserId)
+    console.log("A user is joined : " , UserId);
   })
 
   socket.on('send-message' , ({SenderId , ReceiverId , Message , PicturePath})=>{
 
     io.to(ReceiverId).emit('new-message' , {SenderId , ReceiverId , Message , PicturePath})
+  })
+
+  socket.on("disconnect" , ()=>{
+    if(socket.UserId){
+        socket.broadcast.emit("user-disconnected", socket.UserId);
+    }
   })
 
 })

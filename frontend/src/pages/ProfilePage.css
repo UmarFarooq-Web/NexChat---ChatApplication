@@ -2,6 +2,7 @@
 .profilePageContainer{
     background-color: var(--secondaryColor);
     padding: 20px;
+    min-height: 100vh;
 }
 
 .InnerContainer{
@@ -15,6 +16,7 @@
     align-items: center;
     border-radius: 10px;
     padding: 10px 30px;
+    position: relative;
 
 }
 
@@ -23,7 +25,27 @@
     height: 200px;
     border-radius: 1100px;
     overflow: hidden;
+    position: relative;
+    object-fit: contain;
 
+}
+.ProfilePicSection img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* better for profile pics */
+}
+.CameraContainer{
+    position: relative;
+}
+.CameraIcon{
+    position: absolute;
+    top: 150px;
+    right: 25px;
+    z-index: 10;
+    padding: 5px;
+    background-color: var(--secondaryColor);
+    color: var(--textColor);
+    border-radius: 100px;
 }
 .profilePicText{
     margin-bottom: 100px;

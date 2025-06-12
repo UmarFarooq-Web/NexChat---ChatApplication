@@ -76,7 +76,6 @@ const chatBox = () => {
     useEffect(() => {
 
         
-        socket.emit('join', AuthUser._id)
 
         socket.on('new-message', (m) => {
                setMessages(Messages => [...Messages, m]);

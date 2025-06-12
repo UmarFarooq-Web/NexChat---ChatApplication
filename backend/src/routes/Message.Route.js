@@ -64,9 +64,9 @@ router.get("/get-users", protectedRoute, async (req, res) => {
         const DataUsers = await Promise.all(users.map(async (e) => {
 
             let EachUser;
-            if(e.UserId == UserId){
+            if (e.UserId == UserId) {
                 EachUser = await user.findById(e.HolderId).select("-Password");
-            }else{
+            } else {
                 EachUser = await user.findById(e.UserId).select("-Password");
 
             }
@@ -238,18 +238,33 @@ router.get("/add-user/:UserId", protectedRoute, async (req, res) => {
 
 
 function streamUpload(fileBuffer) {
-    return new Promise((resolve, reject) => {
-        const stream = cloudinary.uploader.upload_stream((error, result) => {
-            if (result) {
-                resolve(result);
-            } else {
-                reject(error);
-            }
-        });
+  return new Promise((resolve, reject) => {
+    // Set a timeout (e.g., 15 seconds)
+    const timeout = setTimeout(() => {
+      reject({
+        message: 'Request Timeout',
+        http_code: 499,
+        name: 'TimeoutError',
+      });
+    }, 60000);
 
-        streamifier.createReadStream(fileBuffer).pipe(stream);
+    const stream = cloudinary.uploader.upload_stream((error, result) => {
+      clearTimeout(timeout); 
+      if (result) {
+        resolve(result);
+      } else {
+        reject(error || {
+          message: 'Unknown Cloudinary upload error',
+          name: 'UploadError',
+        });
+      }
     });
+
+   
+    streamifier.createReadStream(fileBuffer).pipe(stream);
+  });
 }
+
 
 router.post("/send-message/:UserId", protectedRoute, upload.single("Image"), async (req, res) => {
     try {
@@ -284,5 +299,26 @@ router.post("/send-message/:UserId", protectedRoute, upload.single("Image"), asy
 })
 
 
+router.post("/upload-profile", protectedRoute, upload.single("Image"), async (req, res) => {
+    try{
+
+        const UserId = req.User._id;
+        
+        let PicturePath = "";
+        
+        if (req.file) {
+            const UploadResponse = await streamUpload(req.file.buffer);
+            PicturePath = UploadResponse.secure_url;
+        }
+        
+        const newUser = await user.findByIdAndUpdate(UserId, { ProfilePic:PicturePath }, { new: true });
+        
+        res.status(200).json(newUser);
+    }catch(error){
+        res.status(500).json({message:"Internal Server Error"});
+        console.log("Error in /upload-profile end point : " , error);
+    }
+
+})
 
 export default router;
