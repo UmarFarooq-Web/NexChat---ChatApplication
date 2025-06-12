@@ -33,8 +33,15 @@ const HomePage = () => {
 
         const setConnectedUsers = useAuthStore.getState().setConnectedUsers;
 
+        socket.on("room-users", (e) => {
+          setConnectedUsers((prev) => {
+            const newUsers = e.filter((user) => !prev.includes(user));
+            return [...prev, ...newUsers];
+          });
+        })
+
         socket.on("user-connected", (user) => {
-          console.log("User Connected : " , user);
+          console.log("User Connected : ", user);
           setConnectedUsers((prev) => {
             if (!prev.includes(user)) {
               return [...prev, user];
@@ -42,6 +49,8 @@ const HomePage = () => {
             return prev;
           })
         });
+
+
 
         socket.on("user-disconnected", (user) => {
           setConnectedUsers((prev) => prev.filter((u) => u !== user));
@@ -94,7 +103,7 @@ const HomePage = () => {
             <div className="profilePic">
               <img src={e.ProfilePic || avatar} alt="" />
             </div>
-                <div className={`activeIcon ${connectedUsers.includes(e._id)?"":"hidden"}`}></div>
+            <div className={`activeIcon ${connectedUsers.includes(e._id) ? "" : "hidden"}`}></div>
             <div className='dataDiv'>
               <div className="title"><span>{e.FullName}</span><span>2 min ago</span></div>
               <div className="Message"><span>{e.lastMessage}</span><span>1</span></div>
@@ -109,7 +118,7 @@ const HomePage = () => {
                 <img src={e.ProfilePic || avatar} alt="" />
 
               </div>
-                <div className={`activeIcon ${connectedUsers.includes(e._id)?"":"hidden"}`}></div>
+              <div className={`activeIcon ${connectedUsers.includes(e._id) ? "" : "hidden"}`}></div>
               <div className='dataDiv'>
                 <div className="title"><span>{e.FullName}</span><span>2 min ago</span></div>
                 <div className="Message"><span>{e.lastMessage}</span><span>1</span></div>

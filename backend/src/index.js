@@ -30,7 +30,7 @@ app.use("/auth/api" , AuthRoute )
 app.use("/message" , MessageRoute)
 
 
-
+const roomUsers = [];
 io.on('connection' , (socket)=>{
 
   socket.on('join' , (UserId)=>{
@@ -38,6 +38,12 @@ io.on('connection' , (socket)=>{
     socket.UserId = UserId
     socket.broadcast.emit("user-connected" , UserId)
     console.log("A user is joined : " , UserId);
+    if(!roomUsers.includes(UserId)){
+      roomUsers.push(UserId)
+    }
+
+    io.to(UserId).emit("room-users" , roomUsers);
+
   })
 
   socket.on('send-message' , ({SenderId , ReceiverId , Message , PicturePath})=>{

@@ -9,6 +9,7 @@ import LogoutDialogBox from './LogoutDialogBox';
 import AuthInstance from '../lib/Auth.Axios';
 import toast from 'react-hot-toast';
 import {Tooltip} from "react-tooltip";
+import socket from '../lib/socket.io';
 
 const LeftSideBar = () => {
   const [active, setActive] = useState("");
@@ -28,6 +29,7 @@ const LeftSideBar = () => {
       const res = await AuthInstance.post("/logout");
       toast.success(res?.data?.message);
       setAuthUser(null);
+      socket.disconnect();
       navigate("/login")
     } catch (error) {
       toast.error(error?.response?.data?.message || "Unexpected Error")
