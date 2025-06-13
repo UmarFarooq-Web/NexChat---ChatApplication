@@ -58,3 +58,7 @@ build/          # React build output (e.g., client/build)
 *.njsproj
 *.sln
 *.sw?
+# Ignore all node_modules folders
+node_modules/
+frontend/node_modules/
+backend/node_modules/
