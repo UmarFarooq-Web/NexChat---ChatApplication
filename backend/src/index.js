@@ -30,7 +30,7 @@ app.use("/auth/api" , AuthRoute )
 app.use("/message" , MessageRoute)
 
 
-const roomUsers = [];
+let roomUsers = [];
 io.on('connection' , (socket)=>{
 
   socket.on('join' , (UserId)=>{
@@ -54,6 +54,7 @@ io.on('connection' , (socket)=>{
   socket.on("disconnect" , ()=>{
     if(socket.UserId){
         socket.broadcast.emit("user-disconnected", socket.UserId);
+        roomUsers = roomUsers.filter((u)=>{u != socket.UserId});
     }
   })
 

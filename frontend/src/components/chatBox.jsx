@@ -14,7 +14,7 @@ import avatar from "../assets/images.png"
 
 
 const chatBox = () => {
-    const { AuthUser, Messages, SelectedUser, setMessages } = useAuthStore();
+    const { AuthUser, Messages, SelectedUser, setMessages , connectedUsers } = useAuthStore();
     const [image, setImage] = useState(null);
     const [PreviewImage, setPreviewImage] = useState("");
     const [message, setMessage] = useState("");
@@ -94,7 +94,7 @@ const chatBox = () => {
                     </div>
                     <div className='navDataDiv'>
                         <div>{SelectedUser&&SelectedUser.FullName}</div>
-                        <div>Active Now</div>
+                        <div>{connectedUsers.includes(SelectedUser._id)?"Active now" : "Offline"}</div>
                     </div>
                 </div>
                 <div className="navRight">

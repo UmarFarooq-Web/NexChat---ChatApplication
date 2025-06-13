@@ -18,6 +18,8 @@ const HomePage = () => {
   const [IsUsersLoading, setIsUsersLoading] = useState(false);
   const { AuthUser, Messages, setMessages, setSelectedUser, connectedUsers } = useAuthStore();
   const setConnectedUsers = useAuthStore((state) => state.setConnectedUsers);
+  const [filteredUser , setFilterUsers] = useState([]);
+  const [searchText , setSearchText] = useState("")
 
   const { IsAddChatBoxShown, setIsAddChatBoxShown, Users, setUsers, SelectedUser } = useAuthStore()
   const reloadKey = useAuthStore();
@@ -50,6 +52,8 @@ const HomePage = () => {
           })
         });
 
+        console.log(connectedUsers)
+
 
 
         socket.on("user-disconnected", (user) => {
@@ -68,6 +72,18 @@ const HomePage = () => {
     fun();
   }, [])
 
+  useEffect(() => {
+    if(!Users) return
+    
+    const filter = Users.filter((u)=>(
+      u.FullName.toLowerCase().includes(searchText.toLowerCase())
+    ))
+   
+    setFilterUsers(filter)
+
+  }, [Users , searchText])
+  
+
   const handleUserCardClick = async (UserId) => {
 
     try {
@@ -80,6 +96,9 @@ const HomePage = () => {
     }
   }
 
+  const handleChange = (e)=>{
+    setSearchText(e.target.value);
+  }
 
   return (
     <div className="containers">
@@ -87,17 +106,17 @@ const HomePage = () => {
 
       <div className={`left ${show ? "show" : ""} `}>
         <div className='heading'>
-          <div className='first'>Messages(50)</div>
+          <div className='first'>Messages</div>
           <div className='flex second' onClick={() => { setIsAddChatBoxShown(!IsAddChatBoxShown) }}><Plus />New Chat</div>
         </div>
         <div className='searchBar'>
-          <input type="text" placeholder='Search Message' />
+          <input type="text" placeholder='Search Message' onChange={handleChange} value={searchText} />
           <Search color='white' size={25} />
         </div>
         <div className="heading2">Pinned Message<Pin size={15} /></div>
 
 
-        {IsUsersLoading ? <LoaderCircle className='animate-spin' /> : Users.map((e, i) => (
+        {IsUsersLoading ? <LoaderCircle className='animate-spin' /> : filteredUser.map((e, i) => (
           e.IsPinned &&
           <button key={i} name={e._id} onClick={() => { handleUserCardClick(e._id); setSelectedUser(e) }} className="userCard">
             <div className="profilePic">
@@ -111,17 +130,17 @@ const HomePage = () => {
           </button>))}
 
         <div className="heading2">All Messages</div>
-        {IsUsersLoading ? <LoaderCircle className='animate-spin' /> : Users.map((e, i) => (
+        {IsUsersLoading ? <LoaderCircle className='animate-spin' /> : filteredUser.map((e, i) => (
           !e.IsPinned && (
             <button key={i} name={e._id} onClick={() => { handleUserCardClick(e._id); setSelectedUser(e) }} className={`userCard ${SelectedUser ? SelectedUser._id == e._id ? "bg-[#fafafa34]" : "" : ""}`}>
               <div className="profilePic">
                 <img src={e.ProfilePic || avatar} alt="" />
 
               </div>
-              <div className={`activeIcon ${connectedUsers.includes(e._id) ? "" : "hidden"}`}></div>
+              <div className={`activeIcon ${connectedUsers.length==0?"": connectedUsers.includes(e._id) ? "" : "hidden"}`}></div>
               <div className='dataDiv'>
-                <div className="title"><span>{e.FullName}</span><span>2 min ago</span></div>
-                <div className="Message"><span>{e.lastMessage}</span><span>1</span></div>
+                <div className="title"><span>{e.FullName}</span><span className='hidden'></span></div>
+                <div className="Message"><span>{e.lastMessage}</span></div>
               </div>
             </button>)))}
       </div>
