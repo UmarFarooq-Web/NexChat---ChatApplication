@@ -47,3 +47,57 @@ NexChat is a modern real-time chat application built using the **MERN stack** (M
 ```bash
 git clone https://github.com/yourusername/nexchat.git
 cd nexchat
+
+
+## 🛠️ Setup Instructions
+
+### 2. Environment Variables
+
+Create a `.env` file in both the **backend** and **frontend** (if needed) folders to securely manage environment-specific variables.
+
+#### Example `.env` for Backend:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+CLIENT_URL=http://localhost:3000
+
+
+### 3. 📦 Install Dependencies
+
+To get NexChat up and running, you'll need to install the required dependencies for both the backend and frontend.
+
+---
+
+#### 🛠️ Backend Setup
+
+Navigate to the `backend` folder and install the required packages:
+
+```bash
+cd backend
+npm install
+
+
+### 4. 🚀 Start the Development Servers
+
+With all dependencies installed and your `.env` file configured, you're ready to launch the NexChat app locally.
+
+---
+
+#### 🔌 Start the Backend Server
+
+In the `backend` folder, run the following command:
+
+```bash
+cd backend
+npm run dev
+
+### 5. ✅ Test the App
+
+Once both servers are running:
+
+- Open your browser and go to:
+
+```text
+http://localhost:3000
+
