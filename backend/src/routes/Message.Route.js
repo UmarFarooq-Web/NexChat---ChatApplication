@@ -18,7 +18,7 @@ const protectedRoute = async (req, res, next) => {
 
     try {
 
-        const decorded = jwt.verify(token, "123456789");
+        const decorded = jwt.verify(token, process.env.JWT_SECRET);
         const User = await user.findById(decorded.userId).select("-Password");
 
         req.User = User;

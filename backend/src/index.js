@@ -7,6 +7,9 @@ import cookieParser from "cookie-parser"
 import cors from "cors";
 import {Server} from "socket.io"
 import http from "http"
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express()
 const server = http.createServer(app)
@@ -17,7 +20,7 @@ const io = new Server(server , {
     methods: ["GET", "POST"],
     credentials: true
   }});
-const port = 3000
+const port = process.env.PORT;
 
 app.use(cors({
   origin:"http://localhost:5173",
