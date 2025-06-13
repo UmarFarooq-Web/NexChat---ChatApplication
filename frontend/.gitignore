@@ -21,6 +21,8 @@ lerna-debug.log*
 
 # Node dependencies
 backend/node_modules/
+node_modules/
+**/node_modules/
 
 # Build output
 dist/
@@ -30,7 +32,8 @@ build/          # React build output (e.g., client/build)
 # Environment variables
 .env
 .env.*          # e.g., .env.development, .env.production
-
+backend/.env
+backend/.env.*
 # System files
 .DS_Store
 
