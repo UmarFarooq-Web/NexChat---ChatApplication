@@ -40,64 +40,62 @@ NexChat is a modern real-time chat application built using the **MERN stack** (M
 
 ---
 
-## 🛠️ Setup Instructions
+🛠️ Setup Instructions
+2. 🌱 Environment Variables
+Create a .env file in both the backend and frontend (if needed) folders to securely manage environment-specific variables.
 
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/yourusername/nexchat.git
-cd nexchat
-
-
-## 🛠️ Setup Instructions
-
-### 2. Environment Variables
-
-Create a `.env` file in both the **backend** and **frontend** (if needed) folders to securely manage environment-specific variables.
-
-#### Example `.env` for Backend:
-
-```env
+Example .env for Backend:
+env
+Copy
+Edit
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 CLIENT_URL=http://localhost:3000
+⚠️ Make sure .env is added to your .gitignore to avoid committing sensitive data.
 
-
-### 3. 📦 Install Dependencies
-
+3. 📦 Install Dependencies
 To get NexChat up and running, you'll need to install the required dependencies for both the backend and frontend.
 
----
+🔧 Backend Setup
+Navigate to the backend folder and install the required packages:
 
-#### 🛠️ Backend Setup
-
-Navigate to the `backend` folder and install the required packages:
-
-```bash
+bash
+Copy
+Edit
 cd backend
 npm install
+🎨 Frontend Setup
+Then move to the frontend folder and install the packages:
 
+bash
+Copy
+Edit
+cd ../frontend
+npm install
+4. 🚀 Start the Development Servers
+With all dependencies installed and your .env files configured, you're ready to launch the NexChat app locally.
 
-### 4. 🚀 Start the Development Servers
-
-With all dependencies installed and your `.env` file configured, you're ready to launch the NexChat app locally.
-
----
-
-#### 🔌 Start the Backend Server
-
-In the `backend` folder, run the following command:
-
-```bash
+🔌 Start the Backend Server
+bash
+Copy
+Edit
 cd backend
 npm run dev
-
-### 5. ✅ Test the App
-
+🌐 Start the Frontend Server (in a new terminal)
+bash
+Copy
+Edit
+cd frontend
+npm start
+5. ✅ Test the App
 Once both servers are running:
 
-- Open your browser and go to:
+Open your browser and go to:
 
-```text
+arduino
+Copy
+Edit
 http://localhost:3000
+Open multiple tabs to simulate multiple users and test real-time messaging.
 
+💬 Enjoy real-time chatting with the power of Socket.IO and MongoDB!
