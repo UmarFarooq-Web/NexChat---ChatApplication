@@ -36,66 +36,80 @@ NexChat is a modern real-time chat application built using the **MERN stack** (M
 | Socket.IO  | Real-time WebSockets |
 | Tailwind CSS | Styling |
 | dotenv     | Environment Config |
-| NeDB       | Lightweight local storage (optional support) |
 
 ---
+## 🛠️ Setup Instructions
 
-🛠️ Setup Instructions
-2. 🌱 Environment Variables
-Create a .env file in both the backend and frontend (if needed) folders to securely manage environment-specific variables.
+### 2. 🌱 Environment Variables
 
-Example .env for Backend:
-env
-Copy
-Edit
+Create a `.env` file in both the **backend** and **frontend** (if needed) folders to securely manage environment-specific variables.
+
+**Example `.env` for Backend:**
+
+\`\`\`env
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 CLIENT_URL=http://localhost:3000
-⚠️ Make sure .env is added to your .gitignore to avoid committing sensitive data.
+\`\`\`
 
-3. 📦 Install Dependencies
-To get NexChat up and running, you'll need to install the required dependencies for both the backend and frontend.
+> ⚠️ **Important:** Make sure `.env` is added to your `.gitignore` to avoid committing sensitive data.
 
-🔧 Backend Setup
-Navigate to the backend folder and install the required packages:
+---
 
-bash
-Copy
-Edit
+### 3. 📦 Install Dependencies
+
+To get **NexChat** up and running, install the required dependencies for both the backend and frontend.
+
+#### 🔧 Backend Setup
+
+Navigate to the `backend` folder and install the packages:
+
+\`\`\`bash
 cd backend
 npm install
-🎨 Frontend Setup
-Then move to the frontend folder and install the packages:
+\`\`\`
 
-bash
-Copy
-Edit
+#### 🎨 Frontend Setup
+
+Then move to the `frontend` folder and install the packages:
+
+\`\`\`bash
 cd ../frontend
 npm install
-4. 🚀 Start the Development Servers
-With all dependencies installed and your .env files configured, you're ready to launch the NexChat app locally.
+\`\`\`
 
-🔌 Start the Backend Server
-bash
-Copy
-Edit
+---
+
+### 4. 🚀 Start the Development Servers
+
+With all dependencies installed and your `.env` files configured, you're ready to launch the **NexChat** app locally.
+
+#### 🔌 Start the Backend Server
+
+\`\`\`bash
 cd backend
 npm run dev
-🌐 Start the Frontend Server (in a new terminal)
-bash
-Copy
-Edit
+\`\`\`
+
+#### 🌐 Start the Frontend Server (in a new terminal)
+
+\`\`\`bash
 cd frontend
 npm start
-5. ✅ Test the App
-Once both servers are running:
+\`\`\`
 
-Open your browser and go to:
+---
 
-arduino
-Copy
-Edit
+### 5. ✅ Test the App
+
+Once both servers are running, open your browser and go to:
+
+\`\`\`arduino
 http://localhost:3000
-Open multiple tabs to simulate multiple users and test real-time messaging.
+\`\`\`
 
-💬 Enjoy real-time chatting with the power of Socket.IO and MongoDB!
+> 💡 Open multiple tabs to simulate multiple users and test real-time messaging.
+
+---
+
+💬 **Enjoy real-time chatting with the power of Socket.IO and MongoDB!**
