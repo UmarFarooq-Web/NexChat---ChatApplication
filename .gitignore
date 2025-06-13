@@ -7,36 +7,25 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
 # Node dependencies
-backend/node_modules/
 node_modules/
 **/node_modules/
-node_modules/
-**/node_modules/
+
 # Build output
 dist/
 dist-ssr/
-build/          # React build output (e.g., client/build)
+build/                # React build output (e.g., frontend/build)
 
 # Environment variables
 .env
-.env.*          # e.g., .env.development, .env.production
-backend/.env
-backend/.env.*
+.env.*                # e.g., .env.local, .env.production
+**/.env
+**/.env.*
+
 # System files
 .DS_Store
+.Trashes
+*.local
 
 # IDE/Editor configs
 .vscode/
@@ -48,21 +37,6 @@ backend/.env.*
 *.sln
 *.sw?
 
-# Mac .Trash or temp
-.Trashes
-
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-# Ignore all node_modules folders
-node_modules/
-frontend/node_modules/
-backend/node_modules/
+# Windows specific
+Thumbs.db
+ehthumbs.db
