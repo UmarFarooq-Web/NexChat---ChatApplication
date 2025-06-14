@@ -36,7 +36,7 @@ function App() {
 
     <Route path='/login' element={AuthUser?<Navigate to={"/home"} />:<LoginPage/>} />
     <Route path='/signup' element={AuthUser?<Navigate to={"/home"} />:<SignupPage/>} />
-
+    <Route path='/' element={<Navigate to={"/home"} />} />
     <Route path='/home' element={ AuthUser? <HomeLayout/>: <Navigate to={"/login"} />} >
       <Route index element={<HomePage/>}/>
       <Route path='/home/profile' element={<ProfilePage/>}/>
