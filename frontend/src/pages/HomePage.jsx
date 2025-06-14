@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 import useAuthStore from '../stores/auth.store';
 import { MessageInstance } from '../lib/Auth.Axios';
 import AddChatBox from '../components/AddChatBox';
-import message from '../../../backend/src/models/message.model';
 import socket from '../lib/socket.io';
 import avatar from "../assets/images.png"
 import NoChatBox from '../components/NoChatBox';
